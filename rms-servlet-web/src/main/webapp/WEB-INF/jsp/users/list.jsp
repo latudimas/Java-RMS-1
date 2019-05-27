@@ -28,6 +28,7 @@
                 <tr>
                   <th class="mdl-data-table__cell--non-numeric">User Name</th>
                   <th>Password</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -35,6 +36,10 @@
                   <tr>
                     <td class="mdl-data-table__cell--non-numeric"><c:out value = "${user.userName}"/></td>
                     <td><c:out value = "${user.password}"/></td>
+                    <td>
+                        <a href="/rms-servlet-web/edit?id=<c:out value="${user.id}"/>">Edit </a> &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="/rms-servlet-web/delete?id=<c:out value="${user.id}"/>">Delete</a>
+                    </td>
                   </tr>
               </c:forEach>
               </tbody>

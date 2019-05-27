@@ -13,14 +13,13 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/users/*")
-public class UserServlet extends AbstractController
-{
+public class UserServlet extends AbstractController {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
-    {
-        String path = getTemplatePath(req.getServletPath()+req.getPathInfo());
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = getTemplatePath(req.getServletPath() + req.getPathInfo());
+        System.out.println("path: " + path);
 
-        if ("/list".equalsIgnoreCase(req.getPathInfo())){
+        if ("/list".equalsIgnoreCase(req.getPathInfo())) {
             UserDao userDao = UserDaoImpl.getInstance();
             List<User> users = userDao.findAll();
             req.setAttribute("users", users);
@@ -29,4 +28,57 @@ public class UserServlet extends AbstractController
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
         requestDispatcher.forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String operation = req.getParameter("operation");
+
+        switch (operation) {
+            case "delete": {
+                Long id = Long.parseLong(req.getParameter("id"));
+                UserDao userDao = UserDaoImpl.getInstance();
+
+                if (userDao.find(id).isPresent()) {
+                    try {
+                        User user = userDao.find(id).get();
+                        userDao.delete(user);
+
+                        resp.sendRedirect("/rms-servlet-web/users/list");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+            }
+
+            case "edit": {
+                Long id = Long.parseLong(req.getParameter("id"));
+                UserDao userDao = UserDaoImpl.getInstance();
+
+                if (userDao.find(id).isPresent()) {
+                    User user = userDao.find(id).get();
+                    user.setUserName(req.getParameter("username"));
+                    user.setPassword(req.getParameter("userpass"));
+                    userDao.update(user);
+                    resp.sendRedirect("/rms-servlet-web/users/list");
+                }
+                break;
+            }
+
+            case "insert": {
+                String username = req.getParameter("username");
+                System.out.println("Add New: " + username);
+                String userpass = req.getParameter("userpass");
+
+                User newUser = new User(username, userpass);
+
+                UserDao userDao = UserDaoImpl.getInstance();
+                userDao.save(newUser);
+
+                resp.sendRedirect("/rms-servlet-web/users/list");
+                break;
+            }
+        }
+    }
+
 }
