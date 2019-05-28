@@ -30,11 +30,11 @@
     				<form action="create" method="post">
 <%--						<input class="form-control" type="text" name="id" value="${user.idd}">--%>
     					<div class="mdl-textfield mdl-js-textfield">
-    						Username: <input class="mdl-textfield__input" type="text" id="username" />
+    						<input class="mdl-textfield__input" type="text" id="username" />
     						<label class="mdl-textfield__label" for="username">Username</label>
     					</div>
     					<div class="mdl-textfield mdl-js-textfield">
-    						Password: <input class="mdl-textfield__input" type="password" id="userpass" />
+    						<input class="mdl-textfield__input" type="password" id="userpass" />
     						<label class="mdl-textfield__label" for="userpass">Password</label>
     					</div>
     				</form>
