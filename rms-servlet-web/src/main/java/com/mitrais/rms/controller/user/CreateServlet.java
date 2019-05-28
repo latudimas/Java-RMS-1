@@ -31,10 +31,6 @@ public class CreateServlet extends AbstractController {
         boolean succeed = userDao.save(new User(newUserName, newUserPass));
         System.out.println(succeed);
 
-        if (!succeed) {
-            req.getSession().setAttribute("message", "Fail create User");
-        }
-
         req.getSession().setAttribute("message", "Succeed create user");
         resp.sendRedirect("/rms-servlet-web/users/list");
     }
