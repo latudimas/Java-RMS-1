@@ -28,8 +28,8 @@
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="users/list">Users</a>
-        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="users">Users</a>
+        <a class="mdl-navigation__link" href="form">Add New</a>
         <a class="mdl-navigation__link" href="">Link</a>
         <a class="mdl-navigation__link" href="">Link</a>
       </nav>
@@ -38,8 +38,8 @@
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">RMS</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="users/list">Users</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="users">Users</a>
+      <a class="mdl-navigation__link" href="users">Add New</a>
       <a class="mdl-navigation__link" href="">Link</a>
       <a class="mdl-navigation__link" href="">Link</a>
     </nav>

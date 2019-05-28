@@ -1,5 +1,6 @@
-package com.mitrais.rms.controller;
+package com.mitrais.rms.controller.user;
 
+import com.mitrais.rms.controller.AbstractController;
 import com.mitrais.rms.dao.UserDao;
 import com.mitrais.rms.dao.impl.UserDaoImpl;
 import com.mitrais.rms.model.User;

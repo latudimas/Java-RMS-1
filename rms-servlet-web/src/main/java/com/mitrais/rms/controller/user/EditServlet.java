@@ -1,5 +1,6 @@
-package com.mitrais.rms.controller;
+package com.mitrais.rms.controller.user;
 
+import com.mitrais.rms.controller.AbstractController;
 import com.mitrais.rms.dao.UserDao;
 import com.mitrais.rms.dao.impl.UserDaoImpl;
 import com.mitrais.rms.model.User;
@@ -17,6 +18,10 @@ public class EditServlet extends AbstractController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String path = getTemplatePath("/users" + req.getServletPath());
+        System.out.println(path);
+
+        RequestDispatcher rd = req.getRequestDispatcher(path);
 
         long id = Long.parseLong(req.getParameter("id"));
         UserDao userDao = UserDaoImpl.getInstance();
@@ -24,13 +29,8 @@ public class EditServlet extends AbstractController {
 
         req.setAttribute("user", user);
 
-        System.out.println(id);
-
-        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/users/edit.jsp");
         rd.forward(req, resp);
-
     }
-
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,11 +47,8 @@ public class EditServlet extends AbstractController {
         user.setPassword(newPassword);
         System.out.println("NEW: " + user.getId() + " - " + user.getUserName() + " - " + user.getPassword());
 
-//        User updateuser = new User(id, newUsername, newPassword);
-//        System.out.println(updateuser.getId() + " " + updateuser.getUserName() + " " + updateuser.getPassword());
         userDao.update(user);
-//        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/users/list.jsp");
-//        rd.forward(req, resp);
-//        resp.sendRedirect("users");
+
+        resp.sendRedirect("/rms-servlet-web/users/list");
     }
 }
