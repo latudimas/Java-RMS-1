@@ -29,8 +29,8 @@
       <!-- Navigation -->
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="users">Users</a>
-        <a class="mdl-navigation__link" href="form">Add New</a>
-        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="/rms-servlet-web/create">Add New</a>
+        <a class="mdl-navigation__link" href="/rms-servlet-web">Home</a>
         <a class="mdl-navigation__link" href="">Link</a>
       </nav>
     </div>
@@ -39,8 +39,8 @@
     <span class="mdl-layout-title">RMS</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="users">Users</a>
-      <a class="mdl-navigation__link" href="users">Add New</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="/rms-servlet-web/create">Add New</a>
+      <a class="mdl-navigation__link" href="/rms-servlet-web">Home</a>
       <a class="mdl-navigation__link" href="">Link</a>
     </nav>
   </div>

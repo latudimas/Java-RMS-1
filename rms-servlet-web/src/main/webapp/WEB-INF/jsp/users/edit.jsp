@@ -24,7 +24,7 @@
 </head>
 
 <body>
-<div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+<div class="mdl-layout mdl-js-layout mdl-color--grey-100 box-center">
     <main class="mdl-layout__content">
         <div class="mdl-card mdl-shadow--6dp">
             <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
@@ -42,7 +42,7 @@
                         Password: <input class="mdl-textfield__input" type="password" id="userpass" name="userpass"/>
                         <label class="mdl-textfield__label" for="userpass"></label>
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
+                    <div class="mdl-card__actions">
                         <input class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" type="submit">
                     </div>
                 </form>
