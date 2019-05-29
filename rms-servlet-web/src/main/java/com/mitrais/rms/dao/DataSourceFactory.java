@@ -3,8 +3,12 @@ package com.mitrais.rms.dao;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import javax.sql.DataSource;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * This class provides MySQL datasource to be used to connect to database.
@@ -13,14 +17,26 @@ import java.sql.SQLException;
 public class DataSourceFactory {
     private final DataSource dataSource;
 
-    DataSourceFactory() {
+    private DataSourceFactory() {
         MysqlDataSource dataSource = new MysqlDataSource();
-        // TODO: make these database setting configurable by moving to properties file
-        dataSource.setDatabaseName("rmsdb");
-        dataSource.setServerName("localhost");
-        dataSource.setPort(3306);
-        dataSource.setUser("root");
-        dataSource.setPassword("");
+
+        try(InputStream inputStream = getClass().getResourceAsStream("/database.properties")) {
+            Properties properties = new Properties();
+            properties.load(inputStream);
+
+            dataSource.setDatabaseName(properties.getProperty("database"));
+            dataSource.setServerName(properties.getProperty("serverName"));
+            dataSource.setPort(Integer.parseInt(properties.getProperty("port")));
+            dataSource.setUser(properties.getProperty("user"));
+            dataSource.setPassword(properties.getProperty("password"));
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File Not Found");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Other IO error");
+            e.printStackTrace();
+        }
         this.dataSource = dataSource;
     }
 
