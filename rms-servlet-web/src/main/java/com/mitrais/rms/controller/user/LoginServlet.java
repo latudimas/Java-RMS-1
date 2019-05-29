@@ -32,13 +32,12 @@ public class LoginServlet extends AbstractController
         String userpass = req.getParameter("userpass");
 
         if (checkLogin(username,userpass)) {
-            RequestDispatcher rd = req.getRequestDispatcher("/");
-            rd.forward(req,resp);
+            resp.sendRedirect("/rms-servlet-web/users");
         } else {
             req.getSession().setAttribute("errorMessage", "Invalidate user");
             System.out.println("INVALIDATE");
-            RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-            rd.include(req, resp);
+            RequestDispatcher rd = req.getRequestDispatcher(getTemplatePath("/login"));
+            rd.forward(req, resp);
         }
     }
 
